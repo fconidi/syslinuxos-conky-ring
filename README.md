@@ -1,4 +1,4 @@
-# syslinuxos-ring-conky
+# syslinuxos-conky-ring
 
 Ring-style Conky theme for [SysLinuxOS](https://syslinuxos.com) with **automatic resolution scaling**.
 
@@ -70,8 +70,8 @@ If the SysLinuxOS APT repository is not configured, also download and install
 
 ```bash
 sudo apt install fakeroot dpkg-dev
-git clone https://github.com/fconidi/syslinuxos-ring-conky.git
-cd syslinuxos-ring-conky
+git clone https://github.com/fconidi/syslinuxos-conky-ring.git
+cd syslinuxos-conky-ring
 bash build-deb.sh
 sudo apt install ./syslinuxos-ring-conky_*.deb
 ```
