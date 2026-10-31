@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-PKG_VERSION="0.1.11"
+PKG_VERSION="0.1.12"
 PKG_NAME="syslinuxos-ring-conky"
 ARCH="all"
 
@@ -42,14 +42,14 @@ Version: $PKG_VERSION
 Section: x11
 Priority: optional
 Architecture: $ARCH
-Depends: conky-all, x11-xserver-utils
+Depends: syslinuxos-conky-menu (>= 0.1.0), conky-all, x11-xserver-utils
 Recommends: x11-utils, curl, lm-sensors
 Maintainer: Franco Conidi (edmond) <fconidi@gmail.com>
 Homepage: https://syslinuxos.com
 Installed-Size: $INSTALLED_SIZE
 Description: Ring-style Conky theme for SysLinuxOS with auto-scaling
  Ring-style Conky theme (CPU, RAM, disks, network, clock, battery)
- integrated into the System > Monitor menu of SysLinuxOS.
+ integrated into the System Tools > Conky menu of SysLinuxOS.
  .
  Fork of Auzia Conky by Zineddine SAIBI (GPL-3.0,
  https://github.com/SZinedine/auzia-conky), itself based on the
@@ -100,8 +100,8 @@ case "$1" in
         fi
         echo
         echo "syslinuxos-ring-conky: installation complete."
-        echo "  - Start: Menu > System > Monitor > Conky-ring-start"
-        echo "  - Stop:  Menu > System > Monitor > Conky-ring-stop"
+        echo "  - Start: Menu > System Tools > Conky > Start Ring"
+        echo "  - Stop:  Menu > System Tools > Conky > Stop Ring"
         echo "  - Auto-scaling active based on resolution (override: CONKY_RING_SCALE=<n>)"
         ;;
     abort-upgrade|abort-remove|abort-deconfigure)
@@ -193,5 +193,5 @@ dpkg-deb -c "$OUTPUT_DEB" | awk '{print $1, $6}'
 echo
 echo "Build OK: $OUTPUT_DEB"
 echo
-echo "To install/test:"
+echo "To install:"
 echo "  sudo apt install $OUTPUT_DEB"

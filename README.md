@@ -41,10 +41,10 @@ Distributed under **GPL-3.0**, same as upstream. See `files/opt/Sys-ring-conky/L
   `check_cpu.sh` at boot (and on install) to write the correct `cpu_cores`
   and active `net_interface` into `settings.lua`.
 
-- **No-battery safeguard** — on desktops/VMs without a battery the battery
+- **No-battery safeguard** — on computers without a battery the battery
   ring is suppressed (no misleading "100%" from an AC adapter).
 
-- **Desktop menu integration** — `System > Monitor > Conky-ring-start / Conky-ring-stop`.
+- **Desktop menu integration** — `System Tools > Conky > Start Ring / Stop Ring` (localized when available).
 
 ## Installation
 
@@ -63,6 +63,9 @@ Download the latest `.deb` from [Releases](../../releases/latest) and install:
 sudo apt install ./syslinuxos-ring-conky_<version>_all.deb
 ```
 
+If the SysLinuxOS APT repository is not configured, also download and install
+`syslinuxos-conky-menu` from the [Conky Window repository](https://github.com/fconidi/syslinuxos-conky-window).
+
 ### Build from source
 
 ```bash
@@ -75,6 +78,7 @@ sudo apt install ./syslinuxos-ring-conky_*.deb
 
 ## Dependencies
 
+- `syslinuxos-conky-menu` (shared **System Tools > Conky** submenu)
 - `conky-all`
 - `x11-xserver-utils` (xrandr)
 - `x11-utils` (xdpyinfo — optional fallback)
@@ -93,8 +97,8 @@ sudo apt install ./syslinuxos-ring-conky_*.deb
 ## Usage
 
 ```
-Menu → System → Monitor → Conky-ring-start   # start
-Menu → System → Monitor → Conky-ring-stop    # stop
+Menu → System Tools → Conky → Start Ring   # start
+Menu → System Tools → Conky → Stop Ring    # stop
 ```
 
 Force a specific scale factor without changing resolution:

@@ -1,8 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Conky-ring-start
+Name=Start Ring
+Name[it]=Avvia Ring
 Exec=/opt/scripts/conky-ring-start.sh
 StartupNotify=false
 Terminal=false
 Icon=/usr/share/pixmaps/syslinuxos-ring-conky-start.png
-Categories=System;Monitor;
+Categories=X-SysLinuxOS-Conky;
