@@ -5,5 +5,5 @@ Name[it]=Avvia Ring
 Exec=/opt/scripts/conky-ring-start.sh
 StartupNotify=false
 Terminal=false
-Icon=/usr/share/pixmaps/syslinuxos-ring-conky-start.png
+Icon=syslinuxos-conky
 Categories=X-SysLinuxOS-Conky;

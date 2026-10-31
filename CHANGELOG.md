@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Use the shared Conky icon for both Start and Stop menu entries.
+
 ## 0.2.0
 
 - Rename the package to syslinuxos-conky-ring.

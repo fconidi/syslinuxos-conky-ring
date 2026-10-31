@@ -5,5 +5,5 @@ Name[it]=Ferma Ring
 Exec=/opt/scripts/conky-ring-stop.sh
 StartupNotify=false
 Terminal=false
-Icon=/usr/share/pixmaps/syslinuxos-ring-conky-stop.png
+Icon=syslinuxos-conky
 Categories=X-SysLinuxOS-Conky;
