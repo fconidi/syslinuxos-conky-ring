@@ -52,7 +52,7 @@ Distributed under **GPL-3.0**, same as upstream. See `files/opt/Sys-ring-conky/L
 
 ```bash
 curl -fsSL https://fconidi.github.io/SysLinuxOS-Tools/client/install-repo.sh | sudo bash
-sudo apt install syslinuxos-ring-conky
+sudo apt install syslinuxos-conky-ring
 ```
 
 ### Direct .deb download
@@ -60,11 +60,15 @@ sudo apt install syslinuxos-ring-conky
 Download the latest `.deb` from [Releases](../../releases/latest) and install:
 
 ```bash
-sudo apt install ./syslinuxos-ring-conky_<version>_all.deb
+sudo apt install ./syslinuxos-conky-ring_<version>_all.deb
 ```
 
 If the SysLinuxOS APT repository is not configured, also download and install
 `syslinuxos-conky-menu` from the [Conky Window repository](https://github.com/fconidi/syslinuxos-conky-window).
+
+When upgrading a downloaded package from the previous name, install both
+`syslinuxos-conky-ring` and the transitional `syslinuxos-ring-conky` package
+together so APT can complete the migration.
 
 ### Build from source
 
@@ -73,7 +77,8 @@ sudo apt install fakeroot dpkg-dev
 git clone https://github.com/fconidi/syslinuxos-conky-ring.git
 cd syslinuxos-conky-ring
 bash build-deb.sh
-sudo apt install ./syslinuxos-ring-conky_*.deb
+bash build-transitional.sh
+sudo apt install ./syslinuxos-conky-ring_*.deb ./syslinuxos-ring-conky_*.deb
 ```
 
 ## Dependencies
@@ -106,3 +111,11 @@ Force a specific scale factor without changing resolution:
 ```bash
 CONKY_RING_SCALE=1.5 /opt/scripts/conky-ring-start.sh
 ```
+
+## Previous package name
+
+The old `syslinuxos-ring-conky` package is retained as a transitional package.
+An APT upgrade installs `syslinuxos-conky-ring` automatically. Existing theme
+settings are preserved, and the start/stop script paths remain available.
+
+Build the compatibility package with `bash build-transitional.sh`.

@@ -1,4 +1,4 @@
-# syslinuxos-ring-conky
+# syslinuxos-conky-ring
 
 Tema Conky "ad anelli" di SysLinuxOS con **auto-scaling in base alla
 risoluzione dello schermo**.

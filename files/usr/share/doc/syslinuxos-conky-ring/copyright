@@ -3,7 +3,7 @@ Upstream-Name: Auzia Conky
 Upstream-Contact: Zineddine SAIBI
 Source: https://github.com/SZinedine/auzia-conky
 Comment:
- syslinuxos-ring-conky e' un fork di Auzia Conky (basato sul template
+ syslinuxos-conky-ring e' un fork di Auzia Conky (basato sul template
  Namoudaj Conky, stesso autore). Fork, funzione di auto-scaling in base alla
  risoluzione e packaging per SysLinuxOS a cura di Franco Conidi (edmond).
 

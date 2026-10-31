@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+if [ "${DPKG_MAINTSCRIPT_PACKAGE:-}" = syslinuxos-ring-conky ] &&
+   [ "$(dpkg-query -W -f='${Status}' syslinuxos-conky-ring 2>/dev/null || true)" = 'install ok installed' ]; then
+    exit 0
+fi
+
+case "$1" in
+    install|upgrade)
+        if [ -f /opt/Sys-ring-conky/settings.lua ] &&
+           [ ! -e /var/lib/syslinuxos-conky-ring/legacy-settings.lua ]; then
+            install -d -m 700 /var/lib/syslinuxos-conky-ring
+            install -m 600 /opt/Sys-ring-conky/settings.lua \
+                /var/lib/syslinuxos-conky-ring/legacy-settings.lua
+        fi
+        ;;
+esac
+
+exit 0

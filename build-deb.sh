@@ -1,13 +1,13 @@
 #!/bin/bash
-# Build syslinuxos-ring-conky.
+# Build syslinuxos-conky-ring.
 #
-# Output: syslinuxos-ring-conky_<VERSION>_all.deb in this directory.
+# Output: syslinuxos-conky-ring_<VERSION>_all.deb in this directory.
 # No sudo needed: fakeroot handles root ownership for packaging.
 
 set -euo pipefail
 
-PKG_VERSION="0.1.12"
-PKG_NAME="syslinuxos-ring-conky"
+PKG_VERSION="0.2.0"
+PKG_NAME="syslinuxos-conky-ring"
 ARCH="all"
 
 WORKDIR="$(cd "$(dirname "$0")" && pwd)"
@@ -22,6 +22,7 @@ echo "==> Target: $OUTPUT_DEB"
 rm -rf "$STAGING"
 mkdir -p "$STAGING"
 cp -a "$FILES_DIR"/* "$STAGING/"
+find "$STAGING" -type d -exec chmod 755 {} +
 
 # --- 1b. Permissions ---
 chmod 755 "$STAGING/opt/scripts/conky-ring-start.sh" \
@@ -44,8 +45,10 @@ Priority: optional
 Architecture: $ARCH
 Depends: syslinuxos-conky-menu (>= 0.1.0), conky-all, x11-xserver-utils
 Recommends: x11-utils, curl, lm-sensors
+Replaces: syslinuxos-ring-conky (<< 0.2.0)
+Breaks: syslinuxos-ring-conky (<< 0.2.0)
 Maintainer: Franco Conidi (edmond) <fconidi@gmail.com>
-Homepage: https://syslinuxos.com
+Homepage: https://github.com/fconidi/syslinuxos-conky-ring
 Installed-Size: $INSTALLED_SIZE
 Description: Ring-style Conky theme for SysLinuxOS with auto-scaling
  Ring-style Conky theme (CPU, RAM, disks, network, clock, battery)
@@ -72,6 +75,9 @@ set -e
 
 case "$1" in
     configure)
+POSTINST
+cat "$WORKDIR/packaging/restore-settings.sh" >> "$STAGING/DEBIAN/postinst"
+cat >> "$STAGING/DEBIAN/postinst" <<'POSTINST'
         # Remove legacy unit installed manually from ISO in /etc (plain file,
         # not a symlink): it took precedence over ours in /lib and was a
         # duplicate. Removing it makes our /lib unit authoritative.
@@ -99,7 +105,7 @@ case "$1" in
             update-desktop-database -q /usr/share/applications >/dev/null 2>&1 || true
         fi
         echo
-        echo "syslinuxos-ring-conky: installation complete."
+        echo "syslinuxos-conky-ring: installation complete."
         echo "  - Start: Menu > System Tools > Conky > Start Ring"
         echo "  - Stop:  Menu > System Tools > Conky > Stop Ring"
         echo "  - Auto-scaling active based on resolution (override: CONKY_RING_SCALE=<n>)"
@@ -168,7 +174,8 @@ case "$1" in
 exit 0
 POSTRM
 
-chmod 755 "$STAGING/DEBIAN/postinst" "$STAGING/DEBIAN/prerm" "$STAGING/DEBIAN/postrm"
+cp "$WORKDIR/packaging/preinst" "$STAGING/DEBIAN/preinst"
+chmod 755 "$STAGING/DEBIAN/preinst" "$STAGING/DEBIAN/postinst" "$STAGING/DEBIAN/prerm" "$STAGING/DEBIAN/postrm"
 
 # --- 6. md5sums ---
 echo "==> Generating md5sums"
