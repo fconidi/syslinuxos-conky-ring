@@ -49,7 +49,7 @@ Distributed under **GPL-3.0**, same as upstream. See `files/opt/Sys-ring-conky/L
   HTTPS lookups run in the background, with cached results and short timeouts.
   The address is refreshed every five minutes and the provider every hour.
 
-- **Desktop menu integration** — `System Tools > Conky > Start Ring / Stop Ring` (localized when available).
+- **Desktop menu integration** — `System Tools > Conky > Start Conky-Ring / Stop Conky-Ring`.
 
 ## Installation
 
@@ -108,8 +108,8 @@ sudo apt install ./syslinuxos-conky-ring_*.deb ./syslinuxos-ring-conky_*.deb
 ## Usage
 
 ```
-Menu → System Tools → Conky → Start Ring   # start
-Menu → System Tools → Conky → Stop Ring    # stop
+Menu → System Tools → Conky → Start Conky-Ring   # start
+Menu → System Tools → Conky → Stop Conky-Ring    # stop
 ```
 
 Force a specific scale factor without changing resolution:

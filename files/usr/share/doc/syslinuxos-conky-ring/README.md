@@ -43,12 +43,12 @@ A 1920x1080 `scale = 1.0`, quindi il layout e' identico all'originale.
 - `/opt/scripts/conky-ring-start.sh` / `conky-ring-stop.sh`  avvio/arresto
 - `/opt/scripts/check_cpu.sh`   imposta `cpu_cores` in settings.lua
 - `/lib/systemd/system/check_cpu.service`  esegue check_cpu.sh al boot
-- voci di menu: System Tools > Conky (Avvia Ring / Ferma Ring)
+- voci di menu: System Tools > Conky (Start Conky-Ring / Stop Conky-Ring)
 
 ## Uso
 
-    Menu  ->  System Tools  ->  Conky  ->  Avvia Ring        # avvia
-    Menu  ->  System Tools  ->  Conky  ->  Ferma Ring         # arresta
+    Menu  ->  System Tools  ->  Conky  ->  Start Conky-Ring   # avvia
+    Menu  ->  System Tools  ->  Conky  ->  Stop Conky-Ring    # arresta
 
 ## Dipendenze
 

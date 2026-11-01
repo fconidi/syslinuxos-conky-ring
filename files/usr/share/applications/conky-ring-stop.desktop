@@ -1,7 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Stop Ring
-Name[it]=Ferma Ring
+Name=Stop Conky-Ring
 Exec=/opt/scripts/conky-ring-stop.sh
 StartupNotify=false
 Terminal=false

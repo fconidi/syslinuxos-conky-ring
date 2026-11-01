@@ -1,7 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Start Ring
-Name[it]=Avvia Ring
+Name=Start Conky-Ring
 Exec=/opt/scripts/conky-ring-start.sh
 StartupNotify=false
 Terminal=false

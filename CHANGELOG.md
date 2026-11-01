@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.6
+
+- Label the menu launchers Start Conky-Ring and Stop Conky-Ring in every locale.
+
 ## 0.2.5
 
 - Lower the Internet rings and battery readout while keeping the battery arc fully visible.
