@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5
+
+- Lower the Internet rings and battery readout while keeping the battery arc fully visible.
+
 ## 0.2.4
 
 - Enlarge secondary readings for easier reading on high-density laptop displays.

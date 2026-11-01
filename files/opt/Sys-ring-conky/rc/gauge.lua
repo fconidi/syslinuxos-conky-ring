@@ -21,8 +21,8 @@ local S = {
         begin          = -160,
         end_           = -200,
         text = {
-            perc  = { x = 1095, y = 662 },
-            title = { x = 1000, y = 662 },
+            perc  = { x = 1095, y = 674 },
+            title = { x = 1000, y = 674 },
         },
     },
 
@@ -55,20 +55,20 @@ local S = {
 
     net = {
         x              = 360,
-        y              = 500,
+        y              = 520,
         width          = 10,
         radius         = 120,
         begin_angle    = 0,
         end_angle      = 320,
         indicators = {
-            down       = {x = 295, y = 385},
-            up         = {x = 295, y = 405},
+            down       = {x = 295, y = 405},
+            up         = {x = 295, y = 425},
         },
         total = {
-            down       = {x = 360, y = 510},
-            up         = {x = 360, y = 490},
+            down       = {x = 360, y = 530},
+            up         = {x = 360, y = 510},
         },
-        list = {x = 10, y = 440},
+        list = {x = 10, y = 460},
     },
 
 

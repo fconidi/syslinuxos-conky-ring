@@ -228,7 +228,7 @@ function draw_battery()
         init_battery()
     end
     
-    local y_offset = 10
+    local y_offset = 18
     
     local bat = battery_percent()
     
