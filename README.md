@@ -2,7 +2,7 @@
 
 Ring-style Conky theme for [SysLinuxOS](https://syslinuxos.com) with **automatic resolution scaling**.
 
-Displays CPU, RAM, disks, network, clock and battery as animated rings drawn via Cairo.
+Displays CPU, RAM, disks, network, external IP, ISP, clock and battery as animated rings drawn via Cairo.
 
 ## Credits / License
 
@@ -45,6 +45,10 @@ Distributed under **GPL-3.0**, same as upstream. See `files/opt/Sys-ring-conky/L
 - **No-battery safeguard** — on computers without a battery the battery
   ring is suppressed (no misleading "100%" from an AC adapter).
 
+- **External IP and ISP** — the Internet section shows both values automatically.
+  HTTPS lookups run in the background, with cached results and short timeouts.
+  The address is refreshed every five minutes and the provider every hour.
+
 - **Desktop menu integration** — `System Tools > Conky > Start Ring / Stop Ring` (localized when available).
 
 ## Installation
@@ -86,6 +90,7 @@ sudo apt install ./syslinuxos-conky-ring_*.deb ./syslinuxos-ring-conky_*.deb
 
 - `syslinuxos-conky-menu` (shared **System Tools > Conky** submenu)
 - `conky-all`
+- `python3` (public network details)
 - `x11-xserver-utils` (xrandr)
 - `x11-utils` (xdpyinfo — optional fallback)
 - `lm-sensors` (optional, for accurate CPU temperature)

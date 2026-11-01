@@ -56,16 +56,6 @@ This is the default font used in write() if no other is provided
 ]]
 main_font = "Mono"
 
---[[
-the public ip is fetched from the internet.
-There is no need to refresh it every second like the other values
-
-WARNING: this feature exploits third party services,
-therefore we cannot garantee your privacy if you turn it on
-]]
-use_public_ip = false
-public_ip_refresh_rate = 60     -- secondes
-
 ----------------------------------------------
 
 colors = get_color_table(THEME)

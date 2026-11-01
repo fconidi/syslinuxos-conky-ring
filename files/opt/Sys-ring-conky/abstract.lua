@@ -570,44 +570,6 @@ function fs_free(fs)
 end
 
 
----@type string | nil holds the IP adress value.
-local public_ip = nil
-
-
----@return string|nil
-function get_public_ip()
-    return public_ip
-end
-
-
----Don't call this function every seconde because it is slow and public IP doesn't change much anyway.
----Warning: if your internet connection is disfunctioning, this function may prevent the whole conky from launching
----@return nil
-function update_public_ip()
-    if not use_public_ip then
-        print("Warning: Turn on the variable use_public_ip (set it to true) in settings.lua before calling the function update_public_ip()")
-        public_ip = nil
-    end
-
-    -- fetch IP from the internet. other websites: "ifconfig.me/ip", "ident.me", "api.ipify.org"
-    local file = io.popen("curl -4fsS --max-time 5 https://api.ipify.org 2>/dev/null")
-    if not file then
-        public_ip = "No Address"
-        return nil
-    end
-
-    local output = file:read("*a")
-    file:close()
-    if output == nil or output == "" or string.len(output:gsub("%s", "")) > 39 then
-        public_ip = "No Address"
-        return nil
-    end
-
-    public_ip = tostring(output)
-    return output
-end
-
-
 --[[
     The following will define multiple variables and functions according to the machine where it is ran
     the default value is a nil, so it is necessary to check in case you want to use the second battery.

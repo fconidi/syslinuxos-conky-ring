@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-PKG_VERSION="0.2.2"
+PKG_VERSION="0.2.3"
 PKG_NAME="syslinuxos-conky-ring"
 ARCH="all"
 
@@ -43,7 +43,7 @@ Version: $PKG_VERSION
 Section: x11
 Priority: optional
 Architecture: $ARCH
-Depends: syslinuxos-conky-menu (>= 0.1.1), conky-all, x11-xserver-utils
+Depends: syslinuxos-conky-menu (>= 0.1.1), conky-all, x11-xserver-utils, python3
 Recommends: x11-utils, curl, lm-sensors
 Replaces: syslinuxos-ring-conky (<< 0.2.0)
 Breaks: syslinuxos-ring-conky (<< 0.2.0)

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3
+
+- Show external IP and ISP in the Internet section by default.
+- Refresh public network details in the background without interrupting the rings.
+
 ## 0.2.2
 
 - Keep CPU rings readable above 12 logical processors by grouping consecutive threads.

@@ -203,13 +203,21 @@ table.insert(inf, "SSID:           " .. string.sub(ssid(), 0, 15))
 table.insert(inf, "Wifi Signal:    " .. wifi_signal() .. "%")
 table.insert(inf, "Local IP:       " .. local_ip())
 table.insert(inf, "Gateway:        " .. gw_ip())
-if use_public_ip then
-    if get_public_ip == nil or (updates()%public_ip_refresh_rate) == 0 then
-        update_public_ip()
-    end
-    table.insert(inf, "Public IP:      " .. get_public_ip())
+-- The HTTPS lookup runs in the background; drawing only reads its local cache.
+local tick = tonumber(updates()) or 0
+if tick == 1 or tick % 60 == 0 then
+    os.execute("python3 /opt/Sys-ring-conky/public-info.py >/dev/null 2>&1 &")
 end
-write_line_by_line(S.net.x + 180, S.net.y +90, 20, inf, colors.text, 12)
+local cache = io.open((os.getenv("HOME") or "") .. "/.cache/syslinuxos-conky-ring/public-info", "r")
+local public_ip, isp = "N/A", "N/A"
+if cache then
+    public_ip = cache:read("*l") or public_ip
+    isp = cache:read("*l") or isp
+    cache:close()
+end
+table.insert(inf, "External IP:    " .. public_ip)
+table.insert(inf, "ISP:            " .. isp)
+write_line_by_line(S.net.x + 180, S.net.y + 65, 18, inf, colors.text, 12)
 end
 
 

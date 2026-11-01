@@ -20,6 +20,10 @@ Distribuito sotto **GPL-3.0**, come l'upstream. Vedi `LICENSE`.
 
 ## Cosa fa
 
+La sezione Internet mostra sempre IP esterno e ISP. Il recupero HTTPS avviene
+in background: IP aggiornato ogni cinque minuti, ISP ogni ora. Durante
+un'interruzione di rete resta visibile l'ultimo valore disponibile.
+
 Il tema e' autorato per una finestra di 1240x720 su schermo 1920x1080, con
 coordinate/raggi/font assoluti. Per supportare risoluzioni diverse senza
 ridisegnare tutto, `rc/scale.lua` rileva la risoluzione (xrandr, fallback
@@ -48,4 +52,5 @@ A 1920x1080 `scale = 1.0`, quindi il layout e' identico all'originale.
 
 ## Dipendenze
 
-syslinuxos-conky-menu, conky-all, x11-xserver-utils (xrandr). x11-utils (xdpyinfo) come fallback.
+syslinuxos-conky-menu, conky-all, x11-xserver-utils (xrandr), python3.
+x11-utils (xdpyinfo) come fallback.
