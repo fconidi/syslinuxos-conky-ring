@@ -520,7 +520,7 @@ end
 ---@return string | nil
 function cpu_percent(n)
     if n == nil or n == 0 or n == "" then return parse("cpu") end
-    if n > 0 and n <= 32             then return parse("cpu cpu" .. n)
+    if n > 0                         then return parse("cpu cpu" .. n)
     else                                  return nil end
 end
 

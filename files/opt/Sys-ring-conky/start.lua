@@ -13,7 +13,8 @@ local to_draw_titles = true
 
 -- cpu_cores is the number of logical CPUs. The hand-tuned layouts of rc/gauge.lua
 -- cover 0 (total only) and the even counts 2..12; every other count gets a
--- layout computed by build_cpu_layout(), one ring per thread.
+-- layout computed by build_cpu_layout(). Above 12 threads, each ring shows
+-- the average usage of one consecutive group of threads.
 
 -- Rings are spread between an inner and an outer radius (the bounds of the
 -- 12-thread layout); thickness follows the spacing, and the percentage label
@@ -21,18 +22,22 @@ local to_draw_titles = true
 local function build_cpu_layout(n)
     local r_in, r_out = 82, 186
     local layout = {}
-    local pitch = n > 1 and (r_out - r_in) / (n - 1) or 0
-    local thick = n > 1 and math.max(1.5, math.min(12, pitch * 0.85)) or 30
+    local groups = math.min(n, 12)
+    local pitch = groups > 1 and (r_out - r_in) / (groups - 1) or 0
+    local thick = groups > 1 and math.max(1.5, math.min(12, pitch * 0.85)) or 30
     local step = math.max(1, math.ceil(9 / math.max(pitch, 0.1)))
     local font = math.max(7, math.min(12, math.floor(math.max(pitch, 6) * step * 1.1)))
-    for i = 1, n do
-        local r = n > 1 and (r_in + (i - 1) * pitch) or 130
+    for i = 1, groups do
+        local r = groups > 1 and (r_in + (i - 1) * pitch) or 130
         local text = nil
         -- always label the innermost and the outermost ring, then every step-th
-        if i == 1 or i == n or (i - 1) % step == 0 then
+        if i == 1 or i == groups or (i - 1) % step == 0 then
             text = { x = 205, y = S.cpu.y - r + 6, post_particle = "%", size = font }
         end
-        layout["core" .. i] = { number = i, radius = r, thickness = thick, max_value = 100,
+        layout["core" .. i] = { number = i,
+                                first = math.floor((i - 1) * n / groups) + 1,
+                                last = math.floor(i * n / groups),
+                                radius = r, thickness = thick, max_value = 100,
                                 begin_angle = 0, end_angle = -260, text = text }
     end
     layout.total = { number = 0, radius = 195, thickness = 2, max_value = 100,
@@ -64,10 +69,23 @@ function start()
     draw_net()
 end
 
+local function group_cpu_percent(first, last)
+    local total, samples = 0, 0
+    for index = first, last do
+        local amount = tonumber(cpu_percent(index))
+        if amount then
+            total = total + amount
+            samples = samples + 1
+        end
+    end
+    return samples > 0 and string.format("%.0f", total / samples) or "0"
+end
+
 
 function draw_single_cpu_core(coreN)
     local val = nil
-    if coreN.number >= 0 then val = cpu_percent(coreN.number)
+    if coreN.first then val = group_cpu_percent(coreN.first, coreN.last)
+    elseif coreN.number >= 0 then val = cpu_percent(coreN.number)
     else val = cpu_temperature() -- Assuming cpu_temperature() returns the value needed
     end
 

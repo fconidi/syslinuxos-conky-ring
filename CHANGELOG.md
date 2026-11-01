@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2
+
+- Keep CPU rings readable above 12 logical processors by grouping consecutive threads.
+- Read CPU usage beyond the 32nd logical processor.
+
 ## 0.2.1
 
 - Use the shared Conky icon for both Start and Stop menu entries.

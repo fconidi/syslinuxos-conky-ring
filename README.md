@@ -39,7 +39,8 @@ Distributed under **GPL-3.0**, same as upstream. See `files/opt/Sys-ring-conky/L
 
 - **Auto-detected CPU core/thread count** — `check_cpu.service` runs
   `check_cpu.sh` at boot (and on install) to write the correct `cpu_cores`
-  and active `net_interface` into `settings.lua`.
+  and active `net_interface` into `settings.lua`. Up to 12 threads are shown
+  individually; larger CPUs are shown as 12 consecutive thread groups.
 
 - **No-battery safeguard** — on computers without a battery the battery
   ring is suppressed (no misleading "100%" from an AC adapter).
