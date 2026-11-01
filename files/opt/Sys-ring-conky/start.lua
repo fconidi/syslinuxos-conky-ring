@@ -105,11 +105,12 @@ function draw_cpu()
         draw_single_cpu_core(ncores[i])
     end
 
-    write_list_proccesses_cpu(160, 147, 20, 4, 12, colors.text)
+    write_list_proccesses_cpu(160, 147, 20, 4, 14, colors.text)
 
     local gpu_temp = gpu_temperature()
-    local gpu_temp_text = gpu_temp ~= "" and (gpu_temp .. "°C") or "N/A"
-    write(340, 125, "GPU: " .. gpu_temp_text, 11, color_fromtemperature(gpu_temp))
+    if tonumber(gpu_temp) then
+        write(340, 125, "GPU: " .. gpu_temp .. "°C", 13, color_fromtemperature(gpu_temp))
+    end
 end
 
 
@@ -120,11 +121,11 @@ function draw_memory()
 
     ring_clockwise(S.mem.x, S.mem.y, S.mem.radius, 18, 0, 320, memperc, 100, color_frompercent(tonumber(memperc)))
     ring_clockwise(S.mem.x, S.mem.y, S.mem.radius-18, 14, 0, 320, swpperc, 100, color_frompercent(tonumber(swpperc)))
-    write(S.mem.text.indicators.x, S.mem.text.indicators.y, "ram: " ..memperc .. "%", 12, colors.text)
-    write(S.mem.text.indicators.x, S.mem.text.indicators.y+22, "swap: " ..swpperc .. "%", 12, colors.text)
+    write(S.mem.text.indicators.x, S.mem.text.indicators.y, "ram: " ..memperc .. "%", 14, colors.text)
+    write(S.mem.text.indicators.x, S.mem.text.indicators.y+22, "swap: " ..swpperc .. "%", 14, colors.text)
 
-    write(S.mem.text.process_title.x, S.mem.text.process_title.y, usedmem, 12, colors.text)
-    write_list_proccesses_mem(S.mem.text.processes.x, S.mem.text.processes.y, 20, 5, 12, colors.text)
+    write(S.mem.text.process_title.x, S.mem.text.process_title.y, usedmem, 14, colors.text)
+    write_list_proccesses_mem(S.mem.text.processes.x, S.mem.text.processes.y, 20, 5, 14, colors.text)
 end
 
 
@@ -140,8 +141,8 @@ function draw_clock()
 
     write_bold(S.clock.hr.x, S.clock.hr.y, h, S.clock.font_height, colors.text)
     write(S.clock.mn.x, S.clock.mn.y, m, S.clock.font_m, colors.text)
-    write(S.clock.dt.x, S.clock.dt.y, date, 12, colors.text)
-    write(S.clock.ut.x, S.clock.ut.y, "Uptime: " .. uptime_short(), 11, colors.text)
+    write(S.clock.dt.x, S.clock.dt.y, date, 14, colors.text)
+    write(S.clock.ut.x, S.clock.ut.y, "Uptime: " .. uptime_short(), 13, colors.text)
 end
 
 
@@ -171,17 +172,17 @@ function draw_disks()
     end
 
     ring_anticlockwise(S.disk.x, S.disk.y, S.disk.radius, S.disk.thickness, S.disk.begin_angle, S.disk.end_angle, rt, 100, color_frompercent(tonumber(rt)))
-    write(S.disk.x+45, S.disk.y-S.disk.radius+10, rt_text, 11, colors.text)
+    write(S.disk.x+45, S.disk.y-S.disk.radius+10, rt_text, 13, colors.text)
     if not shared then
         ring_anticlockwise(S.disk.x, S.disk.y, S.disk.radius-22, S.disk.thickness, S.disk.begin_angle, S.disk.end_angle, hm, 100, color_frompercent(tonumber(hm)))
-        write(S.disk.x+40, S.disk.y-S.disk.radius+35, hm_text, 11, colors.text)
+        write(S.disk.x+40, S.disk.y-S.disk.radius+35, hm_text, 13, colors.text)
     end
 
     local dsk_info = {
         "Read:  " .. diskio_read(""),
         "Write: " .. diskio_write(""),
     }
-    write_line_by_line(S.disk.x-40, S.disk.y-10, 20, dsk_info, colors.text, 12)
+    write_line_by_line(S.disk.x-40, S.disk.y-10, 20, dsk_info, colors.text, 14)
 
 end
 
@@ -190,12 +191,12 @@ function draw_net()
     ring_clockwise(S.net.x, S.net.y, S.net.radius, 15, S.net.begin_angle, S.net.end_angle, download_speed_kb(), download_rate_maximum, colors.fg)
     ring_clockwise(S.net.x, S.net.y, S.net.radius-18, 15, S.net.begin_angle, S.net.end_angle, upload_speed_kb(), upload_rate_maximum, colors.fg)
 
-    write(S.net.indicators.down.x, S.net.indicators.down.y, "▼ ".. download_speed(), 12, colors.text)
-    write(S.net.indicators.up.x, S.net.indicators.up.y, "▲ "..upload_speed(), 12, colors.text)
+    write(S.net.indicators.down.x, S.net.indicators.down.y, "▼ ".. download_speed(), 14, colors.text)
+    write(S.net.indicators.up.x, S.net.indicators.up.y, "▲ "..upload_speed(), 14, colors.text)
 
-    write(S.net.total.down.x-50, S.net.y, "Total ", 12, colors.text)
-    write(S.net.total.down.x, S.net.total.down.y, "▼".. download_total(), 12, colors.text)
-    write(S.net.total.up.x, S.net.total.up.y, "▲"..upload_total(), 12, colors.text)
+    write(S.net.total.down.x-50, S.net.y, "Total ", 14, colors.text)
+    write(S.net.total.down.x, S.net.total.down.y, "▼".. download_total(), 14, colors.text)
+    write(S.net.total.up.x, S.net.total.up.y, "▲"..upload_total(), 14, colors.text)
 
 local inf = {}
 table.insert(inf, "Interface:      " .. gw_iface())
@@ -217,7 +218,7 @@ if cache then
 end
 table.insert(inf, "External IP:    " .. public_ip)
 table.insert(inf, "ISP:            " .. isp)
-write_line_by_line(S.net.x + 180, S.net.y + 65, 18, inf, colors.text, 12)
+write_line_by_line(S.net.x + 180, S.net.y + 65, 18, inf, colors.text, 14)
 end
 
 
@@ -227,19 +228,14 @@ function draw_battery()
         init_battery()
     end
     
-    -- HO RIDOTTO l'offset Y. Un numero PIÙ PICCOLO mantiene il blocco più in alto.
-    local y_offset = 10 
+    local y_offset = 10
     
     local bat = battery_percent()
     
-    -- Anello
     ring_anticlockwise(S.battery.x, S.battery.y + y_offset, S.battery.radius, S.battery.width , S.battery.begin, S.battery.end_, bat, 100, color_frompercent_reverse(tonumber(bat)))
-    
-    -- Testo Percentuale
-    write(S.battery.text.perc.x, S.battery.text.perc.y + y_offset, bat .. "%", 15, colors.text)
-    
-    -- Testo Titolo ("Battery") - Ora dovrebbe riapparire
-    write(S.battery.text.title.x, S.battery.text.title.y + y_offset, "Battery", 15, colors.text)
+
+    write(S.battery.text.title.x, S.battery.text.title.y + y_offset, "Battery", 16, colors.text)
+    write(S.battery.text.perc.x, S.battery.text.perc.y + y_offset, bat .. "%", 16, colors.text)
 end
 
 

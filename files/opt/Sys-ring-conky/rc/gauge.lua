@@ -21,8 +21,8 @@ local S = {
         begin          = -160,
         end_           = -200,
         text = {
-            perc  = { x = 1160, y = 608 }, 
-            title = { x = 570, y = 713 }, 
+            perc  = { x = 1095, y = 662 },
+            title = { x = 1000, y = 662 },
         },
     },
 

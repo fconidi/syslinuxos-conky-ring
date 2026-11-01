@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.4
+
+- Enlarge secondary readings for easier reading on high-density laptop displays.
+- Place the battery percentage beside its label and hide unavailable GPU temperature.
+
 ## 0.2.3
 
 - Show external IP and ISP in the Internet section by default.
