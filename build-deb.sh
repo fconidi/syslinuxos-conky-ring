@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-PKG_VERSION="0.2.6"
+PKG_VERSION="0.2.7"
 PKG_NAME="syslinuxos-conky-ring"
 ARCH="all"
 
@@ -106,8 +106,8 @@ cat >> "$STAGING/DEBIAN/postinst" <<'POSTINST'
         fi
         echo
         echo "syslinuxos-conky-ring: installation complete."
-        echo "  - Start: Menu > System Tools > Conky > Start Ring"
-        echo "  - Stop:  Menu > System Tools > Conky > Stop Ring"
+        echo "  - Start: Menu > System Tools > Conky > Start Conky-Ring"
+        echo "  - Stop:  Menu > System Tools > Conky > Stop Conky-Ring"
         echo "  - Auto-scaling active based on resolution (override: CONKY_RING_SCALE=<n>)"
         ;;
     abort-upgrade|abort-remove|abort-deconfigure)

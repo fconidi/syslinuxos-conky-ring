@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.7
+
+- Show the current Conky-Ring launcher names after installation.
+
 ## 0.2.6
 
 - Label the menu launchers Start Conky-Ring and Stop Conky-Ring in every locale.
