@@ -345,8 +345,9 @@ end
 function color_fromtemperature(temperature)
     local value = tonumber(temperature)
     if not value then return colors.fg end
-    if value >= temperature_critical then return colors.critic end
-    if value >= temperature_warning then return colors.warn end
+    -- Older settings.lua files are preserved on upgrade and may lack these values.
+    if value >= (tonumber(temperature_critical) or 85) then return colors.critic end
+    if value >= (tonumber(temperature_warning) or 70) then return colors.warn end
     return colors.fg
 end
 

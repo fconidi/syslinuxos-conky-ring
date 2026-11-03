@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.9
+
+- Keep the full Ring display working with settings preserved from older installations.
+
 ## 0.2.8
 
 - Use the same azure as the other SysLinuxOS Conky themes for the default blue rings.
