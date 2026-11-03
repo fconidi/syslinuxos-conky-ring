@@ -69,7 +69,7 @@ sudo apt install ./syslinuxos-conky-ring_<version>_all.deb
 ```
 
 If the SysLinuxOS APT repository is not configured, also download and install
-`syslinuxos-conky-menu` from the [Conky Window repository](https://github.com/fconidi/syslinuxos-conky-window).
+`syslinuxos-conky-menu` from the [Conky System Four repository](https://github.com/fconidi/syslinuxos-conky-system-four).
 
 When upgrading a downloaded package from the previous name, install both
 `syslinuxos-conky-ring` and the transitional `syslinuxos-ring-conky` package

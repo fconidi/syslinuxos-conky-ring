@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.8
+
+- Use the same azure as the other SysLinuxOS Conky themes for the default blue rings.
+
 ## 0.2.7
 
 - Show the current Conky-Ring launcher names after installation.
