@@ -8,11 +8,18 @@ fi
 
 case "$1" in
     install|upgrade)
-        if [ -f /opt/Sys-ring-conky/settings.lua ] &&
-           [ ! -e /var/lib/syslinuxos-conky-ring/legacy-settings.lua ]; then
-            install -d -m 700 /var/lib/syslinuxos-conky-ring
-            install -m 600 /opt/Sys-ring-conky/settings.lua \
-                /var/lib/syslinuxos-conky-ring/legacy-settings.lua
+        if [ ! -e /var/lib/syslinuxos-conky-ring/legacy-settings.lua ]; then
+            if [ -f /usr/share/conky/syslinuxos-ring/settings.lua ]; then
+                source=/usr/share/conky/syslinuxos-ring/settings.lua
+            elif [ -f /opt/Sys-ring-conky/settings.lua ]; then
+                source=/opt/Sys-ring-conky/settings.lua
+            else
+                source=
+            fi
+            if [ -n "$source" ]; then
+                install -d -m 700 /var/lib/syslinuxos-conky-ring
+                install -m 600 "$source" /var/lib/syslinuxos-conky-ring/legacy-settings.lua
+            fi
         fi
         ;;
 esac

@@ -9,12 +9,12 @@ if [ -z "$iface" ]; then
     iface=$(ip -o link show up 2>/dev/null | awk -F': ' '$2 != "lo" {print $2; exit}')
 fi
 
-if [ -f /opt/Sys-ring-conky/settings.lua ]; then
-    sed -i "s/cpu_cores = [0-9]\+/cpu_cores = $cpu/" /opt/Sys-ring-conky/settings.lua
+if [ -f /usr/share/conky/syslinuxos-ring/settings.lua ]; then
+    sed -i "s/cpu_cores = [0-9]\+/cpu_cores = $cpu/" /usr/share/conky/syslinuxos-ring/settings.lua
     if [ -n "$iface" ]; then
-        sed -i "s/net_interface = \"[^\"]*\"/net_interface = \"$iface\"/" /opt/Sys-ring-conky/settings.lua
+        sed -i "s/net_interface = \"[^\"]*\"/net_interface = \"$iface\"/" /usr/share/conky/syslinuxos-ring/settings.lua
     fi
     echo "Ring conky settings updated: cpu_cores=$cpu, net_interface=${iface:-unchanged}."
 else
-    echo "Error: settings file not found at /opt/Sys-ring-conky/settings.lua."
+    echo "Error: settings file not found at /usr/share/conky/syslinuxos-ring/settings.lua."
 fi

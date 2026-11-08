@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Start Conky-Ring
-Exec=/opt/scripts/conky-ring-start.sh
+Exec=/usr/bin/conky-ring-start.sh
 StartupNotify=false
 Terminal=false
 Icon=syslinuxos-conky

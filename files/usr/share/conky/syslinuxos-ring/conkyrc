@@ -1,6 +1,6 @@
 -- Auto-scaling: rileva la risoluzione e dimensiona la finestra in proporzione.
 -- rc/scale.lua ritorna il fattore rispetto al progetto 1920x1080 (finestra 1240x720).
--- Il launcher fa `cd /opt/Sys-ring-conky/`, quindi il path relativo e' valido.
+-- Il launcher fa `cd /usr/share/conky/syslinuxos-ring/`, quindi il path relativo e' valido.
 local scale = dofile("rc/scale.lua")
 SCALE = scale   -- condiviso con start.lua (stesso lua_State di conky)
 

@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=oneshot
-ExecStart=/opt/scripts/check_cpu.sh
+ExecStart=/usr/lib/syslinuxos-conky-ring/check_cpu.sh
 RemainAfterExit=yes
 
 [Install]

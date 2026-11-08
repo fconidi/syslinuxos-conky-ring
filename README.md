@@ -17,7 +17,7 @@ Fork, auto-scaling and Debian packaging for SysLinuxOS by:
 - **Franco Conidi** (aka *edmond*) — <fconidi@gmail.com>
 - <https://syslinuxos.com> — <https://francoconidi.it>
 
-Distributed under **GPL-3.0**, same as upstream. See `files/opt/Sys-ring-conky/LICENSE`.
+Distributed under **GPL-3.0**, same as upstream. See `files/usr/share/conky/syslinuxos-ring/LICENSE`.
 
 ## Features added over upstream
 
@@ -99,10 +99,10 @@ sudo apt install ./syslinuxos-conky-ring_*.deb ./syslinuxos-ring-conky_*.deb
 
 | Path | Description |
 |------|-------------|
-| `/opt/Sys-ring-conky/` | Theme files (conkyrc, \*.lua, rc/) |
-| `/opt/scripts/conky-ring-start.sh` | Start script |
-| `/opt/scripts/conky-ring-stop.sh` | Stop script |
-| `/opt/scripts/check_cpu.sh` | CPU/net detection script |
+| `/usr/share/conky/syslinuxos-ring/` | Theme files (conkyrc, \*.lua, rc/) |
+| `/usr/bin/conky-ring-start.sh` | Start script |
+| `/usr/bin/conky-ring-stop.sh` | Stop script |
+| `/usr/lib/syslinuxos-conky-ring/check_cpu.sh` | CPU/net detection script |
 | `/lib/systemd/system/check_cpu.service` | Boot-time detection unit |
 
 ## Usage
@@ -115,7 +115,7 @@ Menu → System Tools → Conky → Stop Conky-Ring    # stop
 Force a specific scale factor without changing resolution:
 
 ```bash
-CONKY_RING_SCALE=1.5 /opt/scripts/conky-ring-start.sh
+CONKY_RING_SCALE=1.5 /usr/bin/conky-ring-start.sh
 ```
 
 ## Previous package name

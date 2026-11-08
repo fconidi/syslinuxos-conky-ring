@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 
-SOURCE = Path(__file__).resolve().parents[1] / 'files/opt/Sys-ring-conky/public-info.py'
+SOURCE = Path(__file__).resolve().parents[1] / 'files/usr/share/conky/syslinuxos-ring/public-info.py'
 SPEC = spec_from_file_location('ring_public_info', SOURCE)
 MODULE = module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)

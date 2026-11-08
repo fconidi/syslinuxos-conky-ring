@@ -207,7 +207,7 @@ table.insert(inf, "Gateway:        " .. gw_ip())
 -- The HTTPS lookup runs in the background; drawing only reads its local cache.
 local tick = tonumber(updates()) or 0
 if tick == 1 or tick % 60 == 0 then
-    os.execute("python3 /opt/Sys-ring-conky/public-info.py >/dev/null 2>&1 &")
+    os.execute("python3 /usr/share/conky/syslinuxos-ring/public-info.py >/dev/null 2>&1 &")
 end
 local cache = io.open((os.getenv("HOME") or "") .. "/.cache/syslinuxos-conky-ring/public-info", "r")
 local public_ip, isp = "N/A", "N/A"

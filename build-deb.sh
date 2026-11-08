@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-PKG_VERSION="0.2.9"
+PKG_VERSION="0.2.10"
 PKG_NAME="syslinuxos-conky-ring"
 ARCH="all"
 
@@ -25,11 +25,11 @@ cp -a "$FILES_DIR"/* "$STAGING/"
 find "$STAGING" -type d -exec chmod 755 {} +
 
 # --- 1b. Permissions ---
-chmod 755 "$STAGING/opt/scripts/conky-ring-start.sh" \
-          "$STAGING/opt/scripts/conky-ring-stop.sh" \
-          "$STAGING/opt/scripts/check_cpu.sh"
+chmod 755 "$STAGING/usr/bin/conky-ring-start.sh" \
+          "$STAGING/usr/bin/conky-ring-stop.sh" \
+          "$STAGING/usr/lib/syslinuxos-conky-ring/check_cpu.sh"
 chmod 644 "$STAGING/lib/systemd/system/check_cpu.service"
-find "$STAGING/opt/Sys-ring-conky" -type f -exec chmod 644 {} +
+find "$STAGING/usr/share/conky/syslinuxos-ring" -type f -exec chmod 644 {} +
 chmod 644 "$STAGING/usr/share/applications/"*.desktop
 chmod 644 "$STAGING/usr/share/doc/$PKG_NAME/"*
 
@@ -86,8 +86,8 @@ cat >> "$STAGING/DEBIAN/postinst" <<'POSTINST'
                   /etc/systemd/system/multi-user.target.wants/check_cpu.service
         fi
         # Detect CPU count immediately (updates settings.lua).
-        if [ -x /opt/scripts/check_cpu.sh ]; then
-            /opt/scripts/check_cpu.sh || true
+        if [ -x /usr/lib/syslinuxos-conky-ring/check_cpu.sh ]; then
+            /usr/lib/syslinuxos-conky-ring/check_cpu.sh || true
         fi
         # Enable and start the CPU detection service.
         if [ -d /run/systemd/system ]; then
@@ -131,9 +131,9 @@ case "$1" in
         if [ -d /run/systemd/system ]; then
             systemctl disable --now check_cpu.service >/dev/null 2>&1 || true
         fi
-        # Stop the running ring conky (launched from /opt/Sys-ring-conky)
+        # Stop the running ring conky (launched from /usr/share/conky/syslinuxos-ring)
         for PID in $(pgrep -x conky 2>/dev/null); do
-            if [ "$(readlink /proc/"$PID"/cwd 2>/dev/null)" = "/opt/Sys-ring-conky" ]; then
+            if [ "$(readlink /proc/"$PID"/cwd 2>/dev/null)" = "/usr/share/conky/syslinuxos-ring" ]; then
                 kill "$PID" 2>/dev/null || true
             fi
         done

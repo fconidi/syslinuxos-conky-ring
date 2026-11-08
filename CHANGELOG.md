@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.10
+
+- Install Ring in the standard Conky data directory instead of /opt.
+- Keep customized Ring settings when upgrading from either layout.
+- Stop only Ring when using its menu entry.
+
 ## 0.2.9
 
 - Keep the full Ring display working with settings preserved from older installations.
